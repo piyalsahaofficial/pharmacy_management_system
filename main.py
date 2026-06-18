@@ -59,14 +59,28 @@ def delete_medicine():
           
      print("Not found")
 
+while True:
+     print("\n    SMART PHARMACY    ")
+     print("1. Add Medicine")
+     print("2. View Medicines")
+     print("3. Search Medicine")
+     print("4. Update Price")
+     print("5. Delete Medicine")
+     print("6. Exit")
+     choice = input("Enter your choice? ")
 
-add_medicine()
-view_medicine()
-
-search_medicine()
-
-update_price()
-view_medicine()
-
-delete_medicine()
-view_medicine()
+     if choice == "1":
+          add_medicine()
+     elif choice == "2":
+          view_medicine()
+     elif choice == "3":
+          search_medicine()
+     elif choice == "4":
+          update_price()
+     elif choice == "5":
+          delete_medicine()
+     elif choice == "6":
+          print("Exiting!")
+          break
+     else:
+          print("Invalid Choice")
