@@ -59,6 +59,41 @@ def delete_medicine():
           
      print("Not found")
 
+def save_data():
+     with open("medicines.txt", "w") as file:
+          for med in medicines:
+               file.write(
+                    str(med.id) + "," + 
+                    med.name + "," + 
+                    str(med.price) + "," + 
+                    str(med.qty) + "," +
+                    med.expiry + "\n"
+               )
+     print("Data Saved Successfully!")
+
+def load_data():
+     try:
+          medicines.clear()
+
+          with open("medicines.txt", "r") as file:
+               for line in file:
+                    data = line.strip().split(",")
+
+                    med_id = int(data[0])
+                    name = data[1]
+                    price = float(data[2])
+                    qty = int(data[3])
+                    expiry = data[4]
+
+                    medicines.append(
+                         Medicine(med_id, name, price, qty, expiry)
+                    )
+          print("Data loaded successfully")
+     except FileNotFoundError:
+          print("No saved data found")          
+
+
+
 while True:
      print("\n    SMART PHARMACY    ")
      print("1. Add Medicine")
@@ -66,7 +101,9 @@ while True:
      print("3. Search Medicine")
      print("4. Update Price")
      print("5. Delete Medicine")
-     print("6. Exit")
+     print("6. Save Data")
+     print("7. Load Data")
+     print("8. Exit")
      choice = input("Enter your choice? ")
 
      if choice == "1":
@@ -80,6 +117,10 @@ while True:
      elif choice == "5":
           delete_medicine()
      elif choice == "6":
+          save_data()
+     elif choice == "7":
+          load_data()
+     elif choice == "8":
           print("Exiting!")
           break
      else:
